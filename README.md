@@ -12,13 +12,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist yii2-geo/yii2-geo "*"
+php composer.phar require --prefer-dist nullref/yii2-geo "*"
 ```
 
 or add
 
 ```
-"yii2-geo/yii2-geo": "*"
+"nullref/yii2-geo": "*"
 ```
 
 to the require section of your `composer.json` file.
