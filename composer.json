@@ -1,0 +1,24 @@
+{
+    "name": "nullref/yii2-geo",
+    "description": "GEO Module for Yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yaroslav Velychko",
+            "email": "lijkbezorger@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.4",
+        "nullref/yii2-useful": "dev-master",
+        "nullref/yii2-admin": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "nullref\\geo\\": "src/"
+        }
+    }
+}
