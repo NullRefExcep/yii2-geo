@@ -22,3 +22,8 @@ or add
 ```
 
 to the require section of your `composer.json` file.
+
+Using with yii2-admin module
+----------------------------
+
+You can use this module with [Yii2 Admin](https://github.com/NullRefExcep/yii2-admin) module.
