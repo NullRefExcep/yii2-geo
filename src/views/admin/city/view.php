@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <p>
-        <?= Html::a(Yii::t('geo', 'Back'), Url::to('index'), ['class' =>'btn btn-success']) ?>
+        <?= Html::a(Yii::t('geo', 'List'), Url::to('index'), ['class' =>'btn btn-success']) ?>
         <?= Html::a(Yii::t('geo', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('geo', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -34,11 +34,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'name',
-            'data:ntext',
-            'region_id',
-            'country_id',
+            //'data:ntext',
+            [
+                'attribute' => 'region_id',
+                'value' => $model->region->name,
+            ],
+            [
+                'attribute' => 'country_id',
+                'value' => $model->country->name,
+            ],
             'createdAt:datetime',
             'updatedAt:datetime',
         ],
