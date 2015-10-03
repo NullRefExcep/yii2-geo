@@ -12,7 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="country-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>         <!-- /.col-lg-12 -->
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,
