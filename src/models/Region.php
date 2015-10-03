@@ -67,7 +67,7 @@ class Region extends BaseModel
             'id' => Yii::t('geo', 'ID'),
             'name' => Yii::t('geo', 'Name'),
             'data' => Yii::t('geo', 'Data'),
-            'country_id' => Yii::t('geo', 'Country ID'),
+            'country_id' => Yii::t('geo', 'Country'),
             'createdAt' => Yii::t('geo', 'Created At'),
             'updatedAt' => Yii::t('geo', 'Updated At'),
         ];

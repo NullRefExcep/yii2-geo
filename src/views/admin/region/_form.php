@@ -19,7 +19,7 @@ use nullref\geo\models\Country;
     <?= $form->field($model, 'country_id')
         ->dropDownList(Country::getDropDownArray(),
             ['prompt' => Yii::t('geo', 'Choose country')])
-        ->label(Yii::t('geo', 'Countries'));
+        ->label(Yii::t('geo', 'Country'));
     ?>
 
     <div class="form-group">

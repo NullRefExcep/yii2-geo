@@ -63,8 +63,8 @@ class City extends BaseModel
             'id' => Yii::t('geo', 'ID'),
             'name' => Yii::t('geo', 'Name'),
             'data' => Yii::t('geo', 'Data'),
-            'region_id' => Yii::t('geo', 'Region ID'),
-            'country_id' => Yii::t('geo', 'Country ID'),
+            'region_id' => Yii::t('geo', 'Region'),
+            'country_id' => Yii::t('geo', 'Country'),
             'createdAt' => Yii::t('geo', 'Created At'),
             'updatedAt' => Yii::t('geo', 'Updated At'),
         ];
