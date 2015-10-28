@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 use nullref\geo\models\Country;
 
 /* @var $this yii\web\View */

@@ -2,9 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 use nullref\geo\models\Country;
 use nullref\geo\models\Region;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model nullref\geo\models\City */
@@ -17,17 +17,30 @@ use nullref\geo\models\Region;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'country_id')
+        ->dropDownList(Country::getDropDownArray(),
+            ['prompt' => Yii::t('geo', 'Choose country')])
+        ->label(Yii::t('geo', 'Country'));
+    ?>
+
     <?= $form->field($model, 'region_id')
         ->dropDownList(Region::getDropDownArray(),
             ['prompt' => Yii::t('geo', 'Choose region')])
         ->label(Yii::t('geo', 'Region'));
     ?>
 
-    <?= $form->field($model, 'country_id')
-        ->dropDownList(Country::getDropDownArray(),
-            ['prompt' => Yii::t('geo', 'Choose country')])
-        ->label(Yii::t('geo', 'Country'));
-    ?>
+    <!--
+     /*$form->field($model, 'region_id')
+        ->widget(DepDrop::classname(), [
+            'pluginOptions'=>[
+                'depends' => ['country_id'],
+                'placeholder' => Yii::t('geo', 'Choose region'),
+                'url' => Url::to(['/geo/admin/region/dep-region'])
+            ]
+        ]); */
+    -->
+
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('geo', 'Create') : Yii::t('geo', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

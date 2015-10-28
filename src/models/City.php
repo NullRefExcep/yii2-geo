@@ -83,4 +83,17 @@ class City extends BaseModel
         return $this->hasOne(Country::className(), ['id' => 'country_id']);
     }
 
+    public function getDepRegion($country_id)
+    {
+        $result = [];
+        $depRegions = $this->getRegion()->where(['country_id' => $country_id])->all();
+        foreach ($depRegions as $key => $region) {
+            $result = [
+                ['id'=>"<region-id-$key>", 'name'=>"<region-name$key>"]
+            ];
+
+        }
+        return $result;
+    }
+
 }
