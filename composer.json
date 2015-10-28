@@ -2,7 +2,7 @@
     "name": "nullref/yii2-geo",
     "description": "GEO Module for Yii2",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension"],
+    "keywords": ["yii2","extension","geo"],
     "license": "MIT",
     "authors": [
         {
