@@ -2,9 +2,10 @@
 
 namespace nullref\geo\controllers\admin;
 
+use nullref\core\interfaces\IAdminController;
 use Yii;
 use nullref\geo\models\Country;
-use nullref\admin\components\AdminController as Controller;
+use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * CountryController implements the CRUD actions for Country model.
  */
-class CountryController extends Controller
+class CountryController extends Controller implements IAdminController
 {
     public function behaviors()
     {

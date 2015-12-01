@@ -17,7 +17,7 @@ class Module extends BaseModule implements IAdminModule
     public static function getAdminMenu()
     {
         return [
-            'label' => Yii::t('admin', 'Geo'),
+            'label' => Yii::t('geo', 'Geo'),
             'icon' => FA::_GLOBE,
             'items' => [
                 'countries' => [

@@ -2,18 +2,19 @@
 
 namespace nullref\geo\controllers\admin;
 
+use nullref\core\interfaces\IAdminController;
 use Yii;
 use nullref\geo\models\City;
-use nullref\admin\components\AdminController as Controller;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * CityController implements the CRUD actions for City model.
  */
-class CityController extends Controller
+class CityController extends Controller implements IAdminController
 {
     public function behaviors()
     {
