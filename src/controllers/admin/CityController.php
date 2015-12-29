@@ -133,24 +133,33 @@ class CityController extends Controller implements IAdminController
         }
     }
 
-    public function actionDepRegion() {
+    public function getRegions($country_id)
+    {
+        $regions = Region::find()->where(['country_id' => $country_id])->all();
+        $regionList = [];
+        /** @var Region $region */
+        foreach ($regions as $region) {
+            $regionList[] = [
+                'id' => $region->id,
+                'name' => $region->name,
+            ];
+        }
+        return $regionList;
+    }
+
+    public function actionRegion()
+    {
         $out = [];
         if (isset($_POST['depdrop_parents'])) {
             $parents = $_POST['depdrop_parents'];
             if ($parents != null) {
                 $country_id = $parents[0];
-                $out = City::getDepRegion($country_id);
-                // the getSubCatList function will query the database based on the
-                // cat_id and return an array like below:
-                // [
-                //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
-                //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
-                // ]
-                echo Json::encode(['output'=>$out, 'selected'=>'']);
+                $out = self::getRegions($country_id);
+                echo Json::encode(['output' => $out, 'selected' => '']);
                 return;
             }
         }
-        echo Json::encode(['output'=>'', 'selected'=>'']);
+        echo Json::encode(['output' => '', 'selected' => '']);
     }
 
 }

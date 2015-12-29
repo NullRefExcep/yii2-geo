@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use nullref\geo\models\Country;
 use nullref\geo\models\Region;
 use yii\helpers\Url;
+use kartik\depdrop\DepDrop;
 
 /* @var $this yii\web\View */
 /* @var $model nullref\geo\models\City */
@@ -23,24 +24,14 @@ use yii\helpers\Url;
         ->label(Yii::t('geo', 'Country'));
     ?>
 
-    <?= $form->field($model, 'region_id')
-        ->dropDownList(Region::getDropDownArray(),
-            ['prompt' => Yii::t('geo', 'Choose region')])
-        ->label(Yii::t('geo', 'Region'));
-    ?>
-
-    <!--
-     /*$form->field($model, 'region_id')
-        ->widget(DepDrop::classname(), [
-            'pluginOptions'=>[
-                'depends' => ['country_id'],
-                'placeholder' => Yii::t('geo', 'Choose region'),
-                'url' => Url::to(['/geo/admin/region/dep-region'])
-            ]
-        ]); */
-    -->
-
-
+    <?= $form->field($model, 'region_id')->widget(DepDrop::classname(), [
+        'options' => ['id' => 'region_id'],
+        'pluginOptions'=>[
+            'depends' => [Html::getInputId($model,'country_id')],
+            'placeholder' => Yii::t('geo', 'Choose region'),
+            'url' => Url::to(['/geo/admin/city/region'])
+        ]
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('geo', 'Create') : Yii::t('geo', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
