@@ -5,6 +5,7 @@ namespace nullref\geo\controllers\admin;
 use nullref\core\interfaces\IAdminController;
 use Yii;
 use nullref\geo\models\City;
+use nullref\geo\models\Region;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -20,12 +21,16 @@ class CityController extends Controller implements IAdminController
      * @var string
      */
     public $modelClass;
+    public $modelRegionClass;
 
     public function init()
     {
         parent::init();
         if ($this->modelClass === null) {
             $this->modelClass = City::className();
+        }
+        if ($this->modelRegionClass === null) {
+            $this->modelRegionClass = Region::className();
         }
     }
 
@@ -48,7 +53,7 @@ class CityController extends Controller implements IAdminController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => City::find()->joinWith(['country','region']),
+            'query' => call_user_func([$this->modelClass, 'find'])->joinWith(['country','region']),
             'sort' => [
                 'attributes' => [
                     'country' => [
@@ -87,7 +92,7 @@ class CityController extends Controller implements IAdminController
      */
     public function actionCreate()
     {
-        $model = new City();
+        $model = Yii::createObject($this->modelClass);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -139,7 +144,7 @@ class CityController extends Controller implements IAdminController
      */
     protected function findModel($id)
     {
-        if (($model = City::findOne($id)) !== null) {
+        if (($model = call_user_func([$this->modelClass, 'findOne'], [$id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -148,7 +153,7 @@ class CityController extends Controller implements IAdminController
 
     public function getRegions($country_id)
     {
-        $regions = Region::find()->where(['country_id' => $country_id])->all();
+        $regions = call_user_func([$this->modelRegionClass, 'find'])->where(['country_id' => $country_id])->all();
         $regionList = [];
         /** @var Region $region */
         foreach ($regions as $region) {

@@ -7,18 +7,45 @@ use nullref\core\components\Module as BaseModule;
 use nullref\core\interfaces\IAdminModule;
 use rmrevin\yii\fontawesome\FA;
 use Yii;
+use yii\base\Application;
+use yii\base\BootstrapInterface;
+use yii\i18n\PhpMessageSource;
+use yii\web\Application as WebApplication;
 use yii\base\InvalidConfigException;
 
 /**
  *
  */
-class Module extends BaseModule implements IAdminModule
+class Module extends BaseModule implements IAdminModule, BootstrapInterface
 {
     /**
      * Allow to override module classes
      * @var array
      */
     public $classMap = [];
+
+    protected $_classMap = [
+        'City' => 'nullref\geo\models\City',
+        'Region' => 'nullref\geo\models\Region',
+        'Country' => 'nullref\geo\models\Country',
+    ];
+
+    public function bootstrap($app)
+    {
+        $classMap = array_merge($this->_classMap, $this->classMap);
+        foreach (array_keys($this->classMap) as $item) {
+            $className = '\nullref\geo\models\\' . $item;
+            $geoClass = $className::className();
+            $definition = $classMap[$item];
+            Yii::$container->set($geoClass, $definition);
+        }
+        if ($app instanceof WebApplication) {
+            $app->i18n->translations['geo*'] = [
+                'class' => PhpMessageSource::className(),
+                'basePath' => '@nullref/geo/messages',
+            ];
+        }
+    }
 
     public static function getAdminMenu()
     {

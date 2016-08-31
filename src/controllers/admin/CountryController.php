@@ -47,7 +47,7 @@ class CountryController extends Controller implements IAdminController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Country::find(),
+            'query' => call_user_func([$this->modelClass, 'find']),
         ]);
 
         return $this->render('index', [
@@ -74,7 +74,7 @@ class CountryController extends Controller implements IAdminController
      */
     public function actionCreate()
     {
-        $model = new Country();
+        $model = Yii::createObject($this->modelClass);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -126,7 +126,7 @@ class CountryController extends Controller implements IAdminController
      */
     protected function findModel($id)
     {
-        if (($model = Country::findOne($id)) !== null) {
+        if (($model = call_user_func([$this->modelClass, 'findOne'], [$id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
