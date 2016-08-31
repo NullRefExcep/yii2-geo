@@ -15,6 +15,19 @@ use yii\filters\VerbFilter;
  */
 class CountryController extends Controller implements IAdminController
 {
+    /**
+     * @var string
+     */
+    public $modelClass;
+
+    public function init()
+    {
+        parent::init();
+        if ($this->modelClass === null) {
+            $this->modelClass = Country::className();
+        }
+    }
+
     public function behaviors()
     {
         return [

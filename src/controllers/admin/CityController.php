@@ -16,6 +16,19 @@ use yii\filters\VerbFilter;
  */
 class CityController extends Controller implements IAdminController
 {
+    /**
+     * @var string
+     */
+    public $modelClass;
+
+    public function init()
+    {
+        parent::init();
+        if ($this->modelClass === null) {
+            $this->modelClass = City::className();
+        }
+    }
+
     public function behaviors()
     {
         return [
