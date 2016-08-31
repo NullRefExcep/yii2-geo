@@ -14,6 +14,12 @@ use yii\base\InvalidConfigException;
  */
 class Module extends BaseModule implements IAdminModule
 {
+    /**
+     * Allow to override module classes
+     * @var array
+     */
+    public $classMap = [];
+
     public static function getAdminMenu()
     {
         return [
