@@ -3,7 +3,6 @@
 namespace nullref\geo\models;
 
 use nullref\core\models\Model as BaseModel;
-use nullref\useful\traits\GetDefinition;
 use nullref\useful\DropDownTrait;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -23,7 +22,6 @@ use yii\behaviors\TimestampBehavior;
  */
 class Country extends BaseModel
 {
-    use GetDefinition;
     use DropDownTrait;
     /**
      * @inheritdoc
@@ -81,7 +79,7 @@ class Country extends BaseModel
         return $this->hasMany(Region::className(), ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
     }
 
-    public function getCity()
+    public function getCities()
     {
         return $this->hasMany(City::className(), ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
     }

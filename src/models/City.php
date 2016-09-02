@@ -3,7 +3,6 @@
 namespace nullref\geo\models;
 
 use nullref\core\models\Model as BaseModel;
-use nullref\useful\traits\GetDefinition;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -23,7 +22,6 @@ use yii\behaviors\TimestampBehavior;
  */
 class City extends BaseModel
 {
-    use GetDefinition;
 
     /**
      * @inheritdoc
