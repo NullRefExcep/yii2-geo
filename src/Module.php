@@ -52,6 +52,7 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
         return [
             'label' => Yii::t('geo', 'Geo'),
             'icon' => FA::_GLOBE,
+            'order' => 2,
             'items' => [
                 'countries' => [
                     'label' => \Yii::t('geo', 'Countries'),
