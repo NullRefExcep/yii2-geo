@@ -1,11 +1,13 @@
 <?php
 
+namespace nullref\cms\geo;
+
 use yii\db\Migration;
-use yii\db\Schema;
+use nullref\core\traits\MigrationTrait;
 
 class m150920_102406_create_geo_tables extends Migration
 {
-    use \nullref\core\traits\MigrationTrait;
+    use MigrationTrait;
 
     protected $geo = [
         'country' => '{{%country}}',
