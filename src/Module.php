@@ -7,11 +7,9 @@ use nullref\core\components\Module as BaseModule;
 use nullref\core\interfaces\IAdminModule;
 use rmrevin\yii\fontawesome\FA;
 use Yii;
-use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\i18n\PhpMessageSource;
 use yii\web\Application as WebApplication;
-use yii\base\InvalidConfigException;
 
 /**
  *
@@ -35,13 +33,13 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
         $classMap = array_merge($this->_classMap, $this->classMap);
         foreach (array_keys($this->classMap) as $item) {
             $className = '\nullref\geo\models\\' . $item;
-            $geoClass = $className::className();
+            $geoClass = $className::class;
             $definition = $classMap[$item];
             Yii::$container->set($geoClass, $definition);
         }
         if ($app instanceof WebApplication) {
             $app->i18n->translations['geo*'] = [
-                'class' => PhpMessageSource::className(),
+                'class' => PhpMessageSource::class,
                 'basePath' => '@nullref/geo/messages',
             ];
         }

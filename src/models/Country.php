@@ -14,8 +14,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $code
  * @property string $name
  * @property string $data
- * @property integer $createdAt
- * @property integer $updatedAt
+ * @property integer $created_at
+ * @property integer $updated_at
  *
  * @property Region[] $regions
  * @property City[] $cities
@@ -35,9 +35,9 @@ class Country extends BaseModel
     {
         return array_merge(parent::behaviors(), [
             'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt',
+                'class' => TimestampBehavior::class,
+                'created_atAttribute' => 'created_at',
+                'updated_atAttribute' => 'updated_at',
             ],
         ]);
     }
@@ -50,7 +50,7 @@ class Country extends BaseModel
         return [
             [['code', 'name'], 'required'],
             [['data'], 'safe'],
-            [['createdAt', 'updatedAt'], 'integer'],
+            [['created_at', 'updated_at'], 'integer'],
             [['code'], 'string', 'max' => 10],
             [['name'], 'string', 'max' => 255],
         ];
@@ -66,8 +66,8 @@ class Country extends BaseModel
             'code' => Yii::t('geo', 'Code'),
             'name' => Yii::t('geo', 'Name'),
             'data' => Yii::t('geo', 'Data'),
-            'createdAt' => Yii::t('geo', 'Created At'),
-            'updatedAt' => Yii::t('geo', 'Updated At'),
+            'created_at' => Yii::t('geo', 'Created At'),
+            'updated_at' => Yii::t('geo', 'Updated At'),
         ];
     }
 
@@ -76,12 +76,12 @@ class Country extends BaseModel
      */
     public function getRegions()
     {
-        return $this->hasMany(Region::className(), ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
+        return $this->hasMany(Region::class, ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
     }
 
     public function getCities()
     {
-        return $this->hasMany(City::className(), ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
+        return $this->hasMany(City::class, ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
     }
 
 }

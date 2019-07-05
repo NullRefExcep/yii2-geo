@@ -1,6 +1,7 @@
 <?php
 
 namespace nullref\geo\controllers\api;
+use nullref\geo\models\Country;
 use yii\rest\ActiveController;
 
 /**
@@ -9,5 +10,5 @@ use yii\rest\ActiveController;
  */
 class CountryController extends ActiveController
 {
-    public $modelClass = 'nullref\geo\models\Country';
+    public $modelClass = Country::class;
 }

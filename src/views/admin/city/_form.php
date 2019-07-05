@@ -1,11 +1,10 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use nullref\geo\models\Country;
-use nullref\geo\models\Region;
-use yii\helpers\Url;
 use kartik\depdrop\DepDrop;
+use nullref\geo\models\Country;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model nullref\geo\models\City */
@@ -24,7 +23,7 @@ use kartik\depdrop\DepDrop;
         ->label(Yii::t('geo', 'Country'));
     ?>
 
-    <?= $form->field($model, 'region_id')->widget(DepDrop::classname(), [
+    <?= $form->field($model, 'region_id')->widget(DepDrop::class, [
         'options' => ['id' => 'region_id'],
         'pluginOptions'=>[
             'depends' => [Html::getInputId($model,'country_id')],

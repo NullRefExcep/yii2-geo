@@ -14,8 +14,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $data
  * @property integer $region_id
  * @property integer $country_id
- * @property integer $createdAt
- * @property integer $updatedAt
+ * @property integer $created_at
+ * @property integer $updated_at
  *
  * @property $region Region
  * @property $country Country
@@ -35,9 +35,7 @@ class City extends BaseModel
     {
         return array_merge(parent::behaviors(), [
             'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt',
+                'class' => TimestampBehavior::class,
             ],
         ]);
     }
@@ -50,7 +48,7 @@ class City extends BaseModel
         return [
             [['name', 'region_id', 'country_id'], 'required'],
             [['data'], 'safe'],
-            [['region_id', 'country_id', 'createdAt', 'updatedAt'], 'integer'],
+            [['region_id', 'country_id', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -66,22 +64,14 @@ class City extends BaseModel
             'data' => Yii::t('geo', 'Data'),
             'region_id' => Yii::t('geo', 'Region'),
             'country_id' => Yii::t('geo', 'Country'),
-            'createdAt' => Yii::t('geo', 'Created At'),
-            'updatedAt' => Yii::t('geo', 'Updated At'),
+            'created_at' => Yii::t('geo', 'Created At'),
+            'updated_at' => Yii::t('geo', 'Updated At'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRegion()
-    {
-        return $this->hasOne(Region::className(), ['id' => 'region_id']);
     }
 
     public function getCountry()
     {
-        return $this->hasOne(Country::className(), ['id' => 'country_id']);
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
     public function getDepRegion($country_id)
@@ -90,11 +80,19 @@ class City extends BaseModel
         $depRegions = $this->getRegion()->where(['country_id' => $country_id])->all();
         foreach ($depRegions as $key => $region) {
             $result = [
-                ['id'=>"<region-id-$key>", 'name'=>"<region-name$key>"]
+                ['id' => "<region-id-$key>", 'name' => "<region-name$key>"]
             ];
 
         }
         return $result;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRegion()
+    {
+        return $this->hasOne(Region::class, ['id' => 'region_id']);
     }
 
 }

@@ -3,12 +3,12 @@
 namespace nullref\geo\controllers\admin;
 
 use nullref\core\interfaces\IAdminController;
-use Yii;
 use nullref\geo\models\Country;
-use yii\web\Controller;
+use Yii;
 use yii\data\ActiveDataProvider;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * CountryController implements the CRUD actions for Country model.
@@ -24,7 +24,7 @@ class CountryController extends Controller implements IAdminController
     {
         parent::init();
         if ($this->modelClass === null) {
-            $this->modelClass = Country::className();
+            $this->modelClass = Country::class;
         }
     }
 
@@ -32,7 +32,7 @@ class CountryController extends Controller implements IAdminController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],

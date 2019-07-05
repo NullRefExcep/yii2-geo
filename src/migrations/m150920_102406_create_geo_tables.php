@@ -2,8 +2,8 @@
 
 namespace nullref\cms\geo;
 
-use yii\db\Migration;
 use nullref\core\traits\MigrationTrait;
+use yii\db\Migration;
 
 class m150920_102406_create_geo_tables extends Migration
 {
@@ -18,7 +18,7 @@ class m150920_102406_create_geo_tables extends Migration
     public function up()
     {
         foreach ($this->geo as $table) {
-            if ($this->tableExist($table)){
+            if ($this->tableExist($table)) {
                 $this->stdout("Table '{$table}' already exists\n");
                 if ($this->confirm('Drop and create new?')) {
                     $this->dropTable($table);
@@ -32,37 +32,37 @@ class m150920_102406_create_geo_tables extends Migration
          * Create country table
          */
         $this->createTable($this->geo['country'], [
-            'id' => Schema::TYPE_PK,
-            'code' => Schema::TYPE_STRING. '(10) NOT NULL',
-            'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'data' => Schema::TYPE_TEXT,
-            'createdAt' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updatedAt' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'id' => $this->primaryKey(),
+            'code' => $this->string()->notNull(),
+            'name' => $this->string()->notNull(),
+            'data' => $this->text(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ], $this->getTableOptions());
 
         /**
          * Create region table
          */
         $this->createTable($this->geo['region'], [
-            'id' => Schema::TYPE_PK,
-            'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'data' => Schema::TYPE_TEXT,
-            'country_id' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'createdAt' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updatedAt' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'data' => $this->text(),
+            'country_id' => $this->integer()->notNull(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ], $this->getTableOptions());
 
         /**
          * Create region table
          */
         $this->createTable($this->geo['city'], [
-            'id' => Schema::TYPE_PK,
-            'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'data' => Schema::TYPE_TEXT,
-            'region_id' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'country_id' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'createdAt' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updatedAt' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'data' => $this->text(),
+            'region_id' => $this->integer()->notNull(),
+            'country_id' => $this->integer()->notNull(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ], $this->getTableOptions());
 
     }

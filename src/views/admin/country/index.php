@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'code',
             'name',
             // 'data:ntext',
-            // 'createdAt',
-            // 'updatedAt',
+            // 'created_at',
+            // 'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

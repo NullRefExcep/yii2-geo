@@ -14,8 +14,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $name
  * @property string $data
  * @property integer $country_id
- * @property integer $createdAt
- * @property integer $updatedAt
+ * @property integer $created_at
+ * @property integer $updated_at
  *
  * @property City[] $cities
  *
@@ -37,9 +37,9 @@ class Region extends BaseModel
     {
         return array_merge(parent::behaviors(), [
             'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'createdAt',
-                'updatedAtAttribute' => 'updatedAt',
+                'class' => TimestampBehavior::class,
+                'created_atAttribute' => 'created_at',
+                'updated_atAttribute' => 'updated_at',
             ],
         ]);
     }
@@ -52,7 +52,7 @@ class Region extends BaseModel
         return [
             [['name', 'country_id'], 'required'],
             [['data'], 'safe'],
-            [['country_id', 'createdAt', 'updatedAt'], 'integer'],
+            [['country_id', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -67,8 +67,8 @@ class Region extends BaseModel
             'name' => Yii::t('geo', 'Name'),
             'data' => Yii::t('geo', 'Data'),
             'country_id' => Yii::t('geo', 'Country ID'),
-            'createdAt' => Yii::t('geo', 'Created At'),
-            'updatedAt' => Yii::t('geo', 'Updated At'),
+            'created_at' => Yii::t('geo', 'Created At'),
+            'updated_at' => Yii::t('geo', 'Updated At'),
         ];
     }
 
@@ -77,12 +77,12 @@ class Region extends BaseModel
      */
     public function getCities()
     {
-        return $this->hasMany(City::className(), ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
+        return $this->hasMany(City::class, ['country_id' => 'id'])->orderBy(['name' => SORT_ASC]);
     }
 
     public function getCountry()
     {
-        return $this->hasOne(Country::className(), ['id' => 'country_id']);
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
 }

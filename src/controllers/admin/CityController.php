@@ -3,14 +3,14 @@
 namespace nullref\geo\controllers\admin;
 
 use nullref\core\interfaces\IAdminController;
-use Yii;
 use nullref\geo\models\City;
 use nullref\geo\models\Region;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CityController implements the CRUD actions for City model.
@@ -27,10 +27,10 @@ class CityController extends Controller implements IAdminController
     {
         parent::init();
         if ($this->modelClass === null) {
-            $this->modelClass = City::className();
+            $this->modelClass = City::class;
         }
         if ($this->modelRegionClass === null) {
-            $this->modelRegionClass = Region::className();
+            $this->modelRegionClass = Region::class;
         }
     }
 
@@ -38,7 +38,7 @@ class CityController extends Controller implements IAdminController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],

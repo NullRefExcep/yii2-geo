@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\helpers\Url;
+use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model nullref\geo\models\Country */
@@ -38,8 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'code',
             'name',
             //'data:ntext',
-            'createdAt:datetime',
-            'updatedAt:datetime',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

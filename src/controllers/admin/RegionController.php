@@ -3,12 +3,12 @@
 namespace nullref\geo\controllers\admin;
 
 use nullref\core\interfaces\IAdminController;
-use Yii;
 use nullref\geo\models\Region;
-use yii\web\Controller;
+use Yii;
 use yii\data\ActiveDataProvider;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * RegionController implements the CRUD actions for Region model.
@@ -24,7 +24,7 @@ class RegionController extends Controller implements IAdminController
     {
         parent::init();
         if ($this->modelClass === null) {
-            $this->modelClass = Region::className();
+            $this->modelClass = Region::class;
         }
     }
 
@@ -32,7 +32,7 @@ class RegionController extends Controller implements IAdminController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],

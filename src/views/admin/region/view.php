@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\helpers\Url;
+use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model nullref\geo\models\Region */
@@ -41,8 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'country_id',
                 'value' => $model->country->name,
             ],
-            'createdAt:datetime',
-            'updatedAt:datetime',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

@@ -4,6 +4,7 @@
     "type": "yii2-extension",
     "keywords": ["yii2","extension","geo"],
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Yaroslav Velychko",
@@ -11,10 +12,24 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=7.0.0",
         "yiisoft/yii2": ">=2.0.4",
+        "nullref/yii2-core": "dev-master",
         "nullref/yii2-useful": "dev-master",
         "kartik-v/yii2-widget-depdrop": "@dev"
+    },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://asset-packagist.org"
+      }
+    ],
+    "config": {
+      "process-timeout": 1800,
+      "sort-packages": true,
+      "fxp-asset": {
+        "enabled": false
+      }
     },
     "autoload": {
         "psr-4": {
