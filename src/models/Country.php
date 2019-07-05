@@ -36,8 +36,6 @@ class Country extends BaseModel
         return array_merge(parent::behaviors(), [
             'timestamp' => [
                 'class' => TimestampBehavior::class,
-                'created_atAttribute' => 'created_at',
-                'updated_atAttribute' => 'updated_at',
             ],
         ]);
     }

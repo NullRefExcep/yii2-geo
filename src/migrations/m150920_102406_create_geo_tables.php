@@ -1,7 +1,5 @@
 <?php
 
-namespace nullref\cms\geo;
-
 use nullref\core\traits\MigrationTrait;
 use yii\db\Migration;
 

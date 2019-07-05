@@ -32,8 +32,7 @@ class Module extends BaseModule implements IAdminModule, BootstrapInterface
     {
         $classMap = array_merge($this->_classMap, $this->classMap);
         foreach (array_keys($this->classMap) as $item) {
-            $className = '\nullref\geo\models\\' . $item;
-            $geoClass = $className::class;
+            $geoClass = '\nullref\geo\models\\' . $item;
             $definition = $classMap[$item];
             Yii::$container->set($geoClass, $definition);
         }
